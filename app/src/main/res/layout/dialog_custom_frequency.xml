@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_custom_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:id="@+id/frequency_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/frequency_tx"
+            android:textSize="20dp" />
+
+        <Spinner
+            android:id="@+id/frequency_spinner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:entries="@array/frequency"
+            android:dropDownVerticalOffset="45dp"
+            android:gravity="center"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_bg"/>
+
+        <Spinner
+            android:id="@+id/frequency_sub"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:dropDownVerticalOffset="45dp"
+            android:gravity="center"
+            android:background="@drawable/spinner_bg"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <TextView
+            android:id="@+id/time"
+            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_centerVertical="true"
+            android:text="@string/time_tx"
+            android:textSize="20dp" />
+
+        <TimePicker
+            android:id="@+id/time_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:timePickerMode="spinner"
+            android:layout_toRightOf="@id/time" />
+
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/setting_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#1e90ff"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/setting_btn"/>
+</LinearLayout>
