@@ -13,12 +13,12 @@
 
     <item
         android:id="@+id/navigation_point"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_baseline_local_parking_24"
         android:title="@string/title_point" />
 
     <item
         android:id="@+id/navigation_budget"
-        android:icon="@android:drawable/ic_menu_agenda"
+        android:icon="@drawable/ic_baseline_monetization_on_24"
         android:title="@string/title_budget" />
 
     <item
