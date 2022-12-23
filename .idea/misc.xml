@@ -17,6 +17,11 @@
         <entry key="..\:/work/DXC/Notification_DXC/app/src/main/res/layout/item_select_layout.xml" value="0.1078125" />
         <entry key="..\:/work/DXC/Notification_DXC/app/src/main/res/layout/title_layout.xml" value="0.1078125" />
         <entry key="..\:/work/DXC/Notification_DXC/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
+        <entry key="..\:/work/JEIS/Notification/app/src/main/res/drawable/common_dialog_bg.xml" value="0.188" />
+        <entry key="..\:/work/JEIS/Notification/app/src/main/res/layout/budget_list_item.xml" value="0.1796875" />
+        <entry key="..\:/work/JEIS/Notification/app/src/main/res/layout/fragment_budget.xml" value="0.1796875" />
+        <entry key="..\:/work/JEIS/Notification/app/src/main/res/layout/fragment_budget_horizontal_chart.xml" value="0.1796875" />
+        <entry key="..\:/work/JEIS/Notification/app/src/main/res/layout/fragment_budget_pager.xml" value="0.1796875" />
       </map>
     </option>
   </component>
