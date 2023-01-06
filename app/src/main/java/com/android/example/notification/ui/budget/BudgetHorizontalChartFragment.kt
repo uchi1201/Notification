@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.example.notification.MainApplication
 import com.android.example.notification.R
@@ -45,7 +47,6 @@ class BudgetHorizontalChartFragment :  Fragment()  {
     private lateinit var totalCharView: HorizontalBarChart
     private lateinit var charView: HorizontalBarChart
     private lateinit var horizontalViewModel: BudgetHorizontalChartViewModel
-    private var budgetList = mutableListOf <BudgetValueBean>()
     private lateinit var month: String
 
     override fun onCreateView(
@@ -110,14 +111,18 @@ class BudgetHorizontalChartFragment :  Fragment()  {
                 //Todo
             }
         }
+        binding.editBtn.setOnClickListener {
+            val bundle = bundleOf("month" to MainApplication.instance().spinnerMonth)
+            findNavController().navigate(R.id.edit_action,bundle)
+        }
 
     }
-
 
     private fun CoroutineScope.doDelayed(timeMillis: Long, block: suspend () -> Unit) = this.launch {
         delay(timeMillis)
         block.invoke()
     }
+
     private fun refreshData(){
         val swipeRefreshLayout: SwipeRefreshLayout = binding.refresh
         swipeRefreshLayout.setOnRefreshListener {
@@ -179,8 +184,6 @@ class BudgetHorizontalChartFragment :  Fragment()  {
     private fun initChartView() {
         charView = binding.categoryChar
         charView.setDrawBarShadow(true)
-//        charView.setExtraOffsets(0f, 0f, 120f, 0f)
-//        charView.setDrawValueAboveBar(true)
         charView.renderer = HorizontalBarChartCustomRenderer(charView, charView.animator, charView.viewPortHandler)
         charView.setTouchEnabled(false)
         charView.isDragEnabled = true

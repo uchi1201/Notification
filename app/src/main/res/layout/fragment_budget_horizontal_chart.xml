@@ -35,8 +35,8 @@
 
             <Button
                 android:id="@+id/edit_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/title_tx"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="end"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="20dp" />
 
-<!--            ↓3つ1dpに変更した（棒グラフの位置調整２０２２１２２３）-->
+            <!--            ↓3つ1dpに変更した（棒グラフの位置調整２０２２１２２３）-->
             <com.github.mikephil.charting.charts.HorizontalBarChart
                 android:id="@+id/category_char"
                 android:layout_width="match_parent"

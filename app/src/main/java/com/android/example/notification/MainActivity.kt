@@ -1,10 +1,16 @@
 package com.android.example.notification
 
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.text.TextUtils
+import android.view.View
 import android.view.Window
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,21 +32,9 @@ class MainActivity : AppCompatActivity() {
 
 
         val navView: BottomNavigationView = binding.navView
-
+        navView.labelVisibilityMode= BottomNavigationView.LABEL_VISIBILITY_LABELED
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home,
-                R.id.navigation_schedule,
-                R.id.navigation_point,
-                R.id.navigation_budget,
-                R.id.navigation_setting
-            )
-        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 

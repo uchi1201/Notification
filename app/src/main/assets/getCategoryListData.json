@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "msg": "ok",
+  "data":{
+
+    "dataList": [
+      {
+
+        "category": "ガス",
+
+        "color":"#FF919191"
+      },
+      {
+
+        "category": "電気",
+
+        "color":"#FFFF8C00"
+      },
+      {
+
+        "category": "水道",
+
+        "color":"#FFE70219"
+
+      },
+      {
+
+        "category": "服飾費",
+
+        "color":"#FF5D4B1D"
+
+      },
+      {
+
+        "category": "食費",
+
+        "color":"#FFF20FEE"
+
+      },
+      {
+
+        "category": "交際費",
+
+        "color":"#FFFFD700"
+
+      }
+    ]
+
+  }
+
+}

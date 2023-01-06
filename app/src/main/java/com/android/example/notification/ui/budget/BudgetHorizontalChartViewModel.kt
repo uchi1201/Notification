@@ -24,10 +24,7 @@ class BudgetHorizontalChartViewModel : ViewModel() {
         value = barChartXLabel()
     }
     val xLabel:LiveData<MutableList<String>> = _xLabel
-   //PullDownの表示
-    val loadingLiveData = MutableLiveData<Boolean>()
-    //横棒上で（XXXX/YYYY）形表示判断フラグ
-    val isAboveBar = MutableLiveData<Boolean>()
+
    //仮データ
     fun createBudgetDataList(month:String):MutableList<BudgetValueBean>{
         val results = mutableListOf<BudgetValueBean>()
@@ -165,6 +162,9 @@ class BudgetHorizontalChartViewModel : ViewModel() {
         return results
     }
 
+    private fun insertData(month: String) {
+
+    }
 
     private fun barChartXLabel(): MutableList<String> {
         return mutableListOf("服飾費", "食費", "交際", "定期支払い")
