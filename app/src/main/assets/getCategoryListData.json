@@ -8,40 +8,40 @@
 
         "category": "ガス",
 
-        "color":"#FF919191"
+        "color":"#FF601986"
       },
       {
 
         "category": "電気",
 
-        "color":"#FFFF8C00"
+        "color":"#FFFFF100"
       },
       {
 
         "category": "水道",
 
-        "color":"#FFE70219"
+        "color":"#FF00A0E9"
 
       },
       {
 
         "category": "服飾費",
 
-        "color":"#FF5D4B1D"
+        "color":"#FFF39800"
 
       },
       {
 
         "category": "食費",
 
-        "color":"#FFF20FEE"
+        "color":"#FFE60012"
 
       },
       {
 
         "category": "交際費",
 
-        "color":"#FFFFD700"
+        "color":"#FF009E96"
 
       }
     ]
