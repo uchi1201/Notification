@@ -138,6 +138,7 @@ class HomeFragment : Fragment() {
                     ?.let { currentMoney?.plus(it) }
             }
             homeViewModel?.getCurrentMoney(currentMoney.toString())
+//            ↓totalが今月の利用額の全額:Viewとつながっていないので後でつなげる必要あり？
             homeViewModel?.getRemainMoney("20000", currentMoney.toString())
 
             binding.notificationList.visibility = View.VISIBLE

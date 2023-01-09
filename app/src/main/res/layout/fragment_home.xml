@@ -44,6 +44,7 @@
                 android:textStyle="bold"
                 android:inputType="number"
                 android:text="0" />
+<!--              ↑ktのcurrentMoneyにしたい-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,12 +79,13 @@
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/card_view"
-        >
+        android:layout_height="393dp"
+        android:layout_below="@id/card_view">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notification_List"
             android:layout_width="match_parent"
@@ -102,5 +104,7 @@
         android:gravity="center"
         android:visibility="gone"
         android:layout_below="@id/card_view"
-        android:text="お知らせは何もないのですが、\n通知権限を開けるか、ネットワークをチェックしてください。" />
+        android:text="お知らせはありません。\n通知権限を開けるか、ネットワークをチェックしてください。" />
+
+
 </RelativeLayout>
