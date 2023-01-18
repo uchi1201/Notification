@@ -34,16 +34,17 @@
                 android:textSize="25sp"
                 android:text="今月の利用額"
                 />
+
             <EditText
                 android:id="@+id/money_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/date"
                 android:layout_marginLeft="200dp"
-                android:textSize="30sp"
-                android:textStyle="bold"
                 android:inputType="number"
-                android:text="0" />
+                android:text="0"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 <!--              ↑ktのcurrentMoneyにしたい-->
             <TextView
                 android:layout_width="wrap_content"

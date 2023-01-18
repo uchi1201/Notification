@@ -6,6 +6,7 @@ import androidx.annotation.IntDef
 @Retention(AnnotationRetention.SOURCE)
 annotation class ErrorCode {
     companion object {
+//        エラーコード？
         const val OK = 200
         const val UNAUTHORIZED = 401
         const val CUSTOM_FIRST = 600

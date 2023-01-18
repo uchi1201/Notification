@@ -24,6 +24,7 @@
         <entry key="..\:/work/JEIS/Notification/app/src/main/res/layout/fragment_budget_pager.xml" value="0.1796875" />
         <entry key="..\:/work/Notification/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1455" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/budget_list_item.xml" value="0.1" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/dialog_category_add.xml" value="0.14764492753623187" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_budget.xml" value="0.1" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_budget_edit.xml" value="0.1082427536231884" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_budget_horizontal_chart.xml" value="0.1" />
@@ -31,6 +32,7 @@
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_category_management.xml" value="0.1082427536231884" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_division.xml" value="0.1" />
+        <entry key="..\:/work/Notification/app/src/main/res/layout/fragment_notification_manage.xml" value="0.14764492753623187" />
         <entry key="..\:/work/Notification/app/src/main/res/layout/notification_item.xml" value="0.1" />
         <entry key="..\:/work/Notification/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1796875" />
       </map>

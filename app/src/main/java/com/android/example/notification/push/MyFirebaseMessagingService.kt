@@ -19,6 +19,7 @@ import com.google.gson.Gson
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         var messageData:Map<String, String>? = null
 

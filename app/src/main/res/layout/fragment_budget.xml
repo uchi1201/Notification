@@ -88,15 +88,15 @@
             android:layout_marginTop="10dp"
             />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_below="@id/lineLayout"
-            />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp" />
         <View
             android:id="@+id/line2_v"
             android:layout_width="match_parent"

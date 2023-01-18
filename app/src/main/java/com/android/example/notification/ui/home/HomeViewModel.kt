@@ -33,6 +33,7 @@ class HomeViewModel : ViewModel() {
 
     fun getRemainMoney(total:String,current:String){
         remainMoney.value = (total.toInt() - current.toInt()).toString()
+
     }
 
 }
