@@ -39,6 +39,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
     private fun getPendingIntent(context: Context, messageData:Map<String, String>?): PendingIntent? {
 
+//        通知から値の受け取り
         val destId: Int = R.id.navigation_home
         val bundle = Bundle()
         bundle.putString("money",messageData?.get("money").toString())
@@ -51,6 +52,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .addDestination(destId)
             .setArguments(bundle)
             .createPendingIntent()
+//          .通知を送るメソッド（bundle）
     }
     override fun onNewToken(token: String) {
         Log.d(TAG, "Refreshed token: $token")

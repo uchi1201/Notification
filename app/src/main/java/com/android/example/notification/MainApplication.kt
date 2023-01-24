@@ -36,6 +36,8 @@ class MainApplication: Application()  {
             // Log and toast
             val msg = getString(R.string.msg_token_fmt)
             Log.d(TAG, msg)
+            Log.d(TAG, token)
+
             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
     }
