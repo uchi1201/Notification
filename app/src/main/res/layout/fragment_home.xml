@@ -11,6 +11,15 @@
     <include android:id="@+id/title_home"
         layout="@layout/title_layout"/>
 
+    <Button
+        android:id="@+id/notification_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_home"
+        android:layout_centerHorizontal="true"
+        android:text="通知送信テスト"
+        android:textSize="15sp"
+        />
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_gravity="center"
@@ -19,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="180dp"
-        android:layout_below="@id/title_home"
+        android:layout_below="@id/notification_send"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,10 +50,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/date"
                 android:layout_marginLeft="200dp"
-                android:inputType="number"
-                android:text="0"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:inputType="number"
+                android:text="0"  />
 <!--              ↑ktのcurrentMoneyにしたい-->
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +93,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="393dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/card_view">
 
         <androidx.recyclerview.widget.RecyclerView

@@ -13,20 +13,25 @@ import kotlinx.coroutines.launch
 
 
 class CategoryManagementViewModel(dataBase: MyDataBase)  : ViewModel(){
-    val categoryData = MutableLiveData<CategoryListData>()
     var categoryDbData = ArrayList<CategoryData>()
     private val jsonFileName = "getCategoryListData.json"
     private var readJsonFile= ReadJsonFile(jsonFileName)
     private val categoryDao = dataBase.categoryDao()
 
-
+    /**
+     * DBにデータを追加
+     * @param context Context
+     */
     fun insertDataBaseData(context: Context){
         val result = readJsonFile.getCategoryListData(context, CategoryListData::class.java)
         for(item in result?.data?.dataList!!){
             categoryDao.insert(item)
         }
     }
-
+    /**
+     * DB中にデータを検索
+     * @param context Context
+     */
     fun getAllCategoryData(){
         categoryDbData = categoryDao.getAll() as ArrayList<CategoryData>
     }
