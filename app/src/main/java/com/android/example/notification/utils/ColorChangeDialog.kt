@@ -17,10 +17,10 @@ class ColorChangeDialog {
     private val listItem: ArrayList<Map<String, String>> = ArrayList()
    // 色変更ポップアップの色値
     var totalColors :Array<String> =
-        arrayOf("#FF919191", "#FF6200EE", "#FF000080", "#FF00688B","#FF00EEEE",
-            "#FF05A724", "#FF5CAF5C", "#FFA1DA68", "#FFFFD700", "#FFFF8C00",
-            "#FFE78B02", "#FFE70219", "#FF692D19","#FFF20FEE","#FF3C4A5D",
-            "#FF538B00", "#FF5D4B1D", "#FF3B807A","#FF50344F","#FF513F19")
+        arrayOf("#FFE60012", "#FFEB6100", "#FFF39800", "#FFFCC800","#FFFFF100",
+            "#FFCFDB00", "#FF8FC31F", "#FF22AC38", "#FF009944", "#FF009B6B",
+            "#FF009E96", "#FF00A0C1", "#FF00A0E9","#FF0086D1","#FF0068B7",
+            "#FF00479D", "#FF1D2088", "#FF601986","#FF920783","#FFBE0081")
 
     /**
      * 使用している色は選択できないため、その以外色を取得
