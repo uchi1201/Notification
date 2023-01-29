@@ -3,17 +3,14 @@ package com.android.example.notification.ui.category
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Color
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColorInt
 import com.android.example.notification.R
-import com.android.example.notification.room.MyDataBase
+import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.data.CategoryData
 import com.android.example.notification.ui.base.list.BaseRecycleViewAdapter
 import com.android.example.notification.utils.ColorChangeDialog
@@ -29,11 +26,11 @@ import kotlin.math.abs
  * @property animation Animation?
  * @property mContext Context
  * @property mDeleteDialog Dialog?
- * @property mDataBase MyDataBase?
+ * @property mDataBase AppDataBase?
  * @property categoryDao CategoryDao?
  * @constructor
  */
-class CategoryListViewAdapter(context: Context, dataBase: MyDataBase?,
+class CategoryListViewAdapter(context: Context, dataBase: AppDataBase?,
                               layoutResourceId: Int, items: ArrayList<CategoryData>, init: (View, CategoryData) -> Unit) :
     BaseRecycleViewAdapter<CategoryData>(layoutResourceId, items, init)  {
     private var downX:Float=0.0f//削除スワイプの指x座標

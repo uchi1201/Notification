@@ -8,20 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.android.example.notification.MainApplication
 import com.android.example.notification.R
 import com.android.example.notification.databinding.FragmentCategoryManagementBinding
-import com.android.example.notification.room.MyDataBase
-import com.android.example.notification.room.dao.CategoryDao
+import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.data.CategoryData
 import com.android.example.notification.utils.CategoryAddDialog
 import com.android.example.notification.utils.ColorChangeDialog
-import com.android.example.notification.utils.LoadingDialogUtils
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,7 +29,7 @@ class CategoryManagementFragment : Fragment() {
     private var _binding: FragmentCategoryManagementBinding? = null
     private val binding get() = _binding!!
     private var categoryManagementViewModel: CategoryManagementViewModel?= null
-    private var dataBase:MyDataBase? = null
+    private var dataBase:AppDataBase? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +38,7 @@ class CategoryManagementFragment : Fragment() {
         _binding = FragmentCategoryManagementBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //DBを取得
-        dataBase = MainApplication.instance().categoryDataBase
+        dataBase = MainApplication.instance().appDataBase
         initData()
         initView()
         return root
@@ -51,12 +46,17 @@ class CategoryManagementFragment : Fragment() {
 
     private fun initData(){
         categoryManagementViewModel = dataBase?.let { CategoryManagementViewModel(it) }
+
+        //DBから全部データを取得
+        categoryManagementViewModel?.getAllCategoryData()
+
         if(categoryManagementViewModel?.categoryDbData?.size == 0){
             //DBのデータがない時データ追加
             activity?.let { categoryManagementViewModel?.insertDataBaseData(it.applicationContext) }
+
+            //DBから全部データを取得
+            categoryManagementViewModel?.getAllCategoryData()
         }
-        //DBから全部データを取得
-        categoryManagementViewModel?.getAllCategoryData()
     }
 
 

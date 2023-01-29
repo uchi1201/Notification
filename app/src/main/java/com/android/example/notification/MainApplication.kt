@@ -5,8 +5,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.room.Room
-import com.android.example.notification.room.BudgetDataBase
-import com.android.example.notification.room.MyDataBase
+import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.NotificationDataBase
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
@@ -15,8 +14,8 @@ class MainApplication: Application()  {
 
     var spinnerMonth:String = "1"
     var notificationDataBase:NotificationDataBase? = null
-    var categoryDataBase:MyDataBase? = null
-    var budgetDataBase: BudgetDataBase? = null
+    var appDataBase:AppDataBase? = null
+    //var budgetDataBase: BudgetDataBase? = null
     var isEditBudget: Boolean = false
     var totalBudgetValue = 34000
     var mainKeyValue = 0
@@ -25,8 +24,8 @@ class MainApplication: Application()  {
         super.onCreate()
         saveData(this,"totalBudgetValue",totalBudgetValue)
         notificationDataBase = Room.databaseBuilder(this, NotificationDataBase::class.java, "myNotification.db").allowMainThreadQueries().build()
-        categoryDataBase = Room.databaseBuilder(this, MyDataBase::class.java, "myCategory.db").allowMainThreadQueries().build()
-        budgetDataBase = Room.databaseBuilder(this, BudgetDataBase::class.java, "myBudget.db").allowMainThreadQueries().build()
+        appDataBase = Room.databaseBuilder(this, AppDataBase::class.java, "appData.db").allowMainThreadQueries().build()
+        //budgetDataBase = Room.databaseBuilder(this, BudgetDataBase::class.java, "myBudget.db").allowMainThreadQueries().build()
         instance = this
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {

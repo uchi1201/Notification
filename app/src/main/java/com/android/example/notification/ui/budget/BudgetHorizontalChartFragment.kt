@@ -46,7 +46,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
     private lateinit var charView: HorizontalBarChart
     private lateinit var horizontalViewModel: BudgetHorizontalChartViewModel
     private lateinit var month: String
-    private val dataBase =  MainApplication.instance().budgetDataBase
+    private val dataBase =  MainApplication.instance().appDataBase
 
     override fun onCreateView(
         inflater: LayoutInflater,
