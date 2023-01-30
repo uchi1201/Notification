@@ -221,7 +221,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
         yl.setDrawAxisLine(false)
         yl.setDrawGridLines(false)
         yl.granularity = 10f
-        yl.axisMaximum = 10000f
+        yl.axisMaximum = 100f
         yl.axisMinimum = 0f // this replaces setStartAtZero(true)
         yl.isEnabled = false
 

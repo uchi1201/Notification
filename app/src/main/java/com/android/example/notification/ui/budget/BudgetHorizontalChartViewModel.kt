@@ -226,7 +226,7 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
 
        for(i in budgetList.indices){
            entryList.add(
-               BarEntry(i.toFloat(), budgetList[budgetList.size-1-i].budget)
+               BarEntry(i.toFloat(), budgetList[budgetList.size-1-i].budget/budgetList[budgetList.size-1-i].budgetTotal*100)
            )
            for(j in categoryList.indices){
                if(budgetList[i].category == categoryList[j].category  ){
