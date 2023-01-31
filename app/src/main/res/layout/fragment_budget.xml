@@ -131,7 +131,7 @@
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/payTotal_tx"
             android:gravity="end"
-            android:text="9700"
+            android:text="17800"
             android:textSize="20dp" />
 
     </RelativeLayout>
