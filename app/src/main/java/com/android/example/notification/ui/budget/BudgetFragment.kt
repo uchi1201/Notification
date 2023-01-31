@@ -33,6 +33,7 @@ class BudgetFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var budgetViewModel: BudgetViewModel
     private lateinit var month: String
+    private val dataBase =  MainApplication.instance().appDataBase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -86,7 +87,7 @@ class BudgetFragment : Fragment() {
         }
     }
     private fun initData(){
-         budgetViewModel = ViewModelProvider(this)[BudgetViewModel::class.java]
+         budgetViewModel = dataBase?.let { BudgetViewModel(it) }!!
         activity?.let { budgetViewModel.getPieData(MainApplication.instance().spinnerMonth) }
         activity?.let { budgetViewModel.getListData(MainApplication.instance().spinnerMonth) }
     }
