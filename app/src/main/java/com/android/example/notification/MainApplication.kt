@@ -12,7 +12,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 
 class MainApplication: Application()  {
 
-    var spinnerMonth:String = "1"
+    var spinnerMonth:String = "3"
     var notificationDataBase:NotificationDataBase? = null
     var appDataBase:AppDataBase? = null
     //var budgetDataBase: BudgetDataBase? = null
@@ -39,6 +39,8 @@ class MainApplication: Application()  {
             // Log and toast
             val msg = getString(R.string.msg_token_fmt)
             Log.d(TAG, msg)
+            //↓トークンを取得（長山）
+            Log.d(TAG,token)
             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
     }
