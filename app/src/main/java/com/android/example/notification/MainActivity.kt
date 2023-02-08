@@ -48,22 +48,21 @@ class MainActivity : AppCompatActivity() {
 //        ローカルプッシュ通知機能
         val alarmMgr: AlarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent: PendingIntent = Intent(application, AlarmReceiver::class.java).let { intent ->
-
-            var yosangaku =  10000
-            var huku = 3000
-            var mizu = 400
+            var yosangaku =  12200
+            var riyougaku = 27000
 
 //                デバッグは条件変更のたびにアンスト＋通知ONすること
-            var msg1 = if (yosangaku < huku+mizu){
+            var msg1 = if (yosangaku < riyougaku){
                 "予算額を超過しているよ！"
             } else {
-                "まだまだ予算が余っているよ"
+                var kekka = yosangaku - riyougaku
+                kekka.toString()+ "円余裕があります。"
             }
 
-            var msg2 = if (yosangaku < huku+mizu){
+            var msg2 = if (yosangaku < riyougaku){
                 "超過"
             } else {
-                "余裕"
+                "まだまだ余裕があるよ。気になってたお洋服が買えちゃうかも！"
             }
 
             intent.putExtra("TITLE",msg1)
