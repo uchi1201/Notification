@@ -24,6 +24,7 @@ import com.android.example.notification.room.dao.NotificationDao
 import com.android.example.notification.room.data.BudgetTableData
 import com.android.example.notification.room.data.CategoryData
 import com.android.example.notification.room.data.NotificationTableData
+import com.android.example.notification.ui.budget.BudgetHorizontalChartViewModel
 import com.android.example.notification.ui.category.CategoryListViewAdapter
 import com.android.example.notification.ui.notification.division.NotificationDivisionViewModel
 
@@ -36,8 +37,8 @@ import com.android.example.notification.ui.notification.division.NotificationDiv
 class BudgetEditFragment : Fragment() {
     private var _binding: FragmentBudgetEditBinding? = null
     private val binding get() = _binding!!
-    private var budgetDao: BudgetDao? = null
-    private var dataBase: AppDataBase? = null
+    private val dataBase =  MainApplication.instance().appDataBase
+    private var budgetDao = dataBase?.budgetDao()
     private var budgetListData = mutableListOf<BudgetTableData>()
     private var categorySpList: ArrayList<String> = ArrayList()
     private var budgetEditViewModel:BudgetEditViewModel? = null
@@ -61,13 +62,9 @@ class BudgetEditFragment : Fragment() {
     }
 
     private fun initData(){
-        //DBを取得
-        dataBase =  MainApplication.instance().appDataBase
-        //Daoを設定
-        budgetDao = dataBase?.budgetDao()
         //DBから予算データ集合を取得（カテゴリー、予算、各予算総額）
         budgetListData = budgetDao?.getAll() as MutableList<BudgetTableData>
-        budgetEditViewModel = ViewModelProvider(this)[BudgetEditViewModel::class.java]
+        budgetEditViewModel = dataBase?.let { BudgetEditViewModel(it) }!!
         //カテゴリ名を プルダウンで選択するリスト
         categorySpList = budgetEditViewModel?.getCategoryList()!!
 
