@@ -74,6 +74,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
     private fun initData() {
         horizontalViewModel = dataBase?.let { BudgetHorizontalChartViewModel(it) }!!
         activity?.let { horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth) }
+        activity?.let { horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth) }
     }
 
     private fun initView() {
@@ -101,6 +102,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, pos: Int, id: Long) {
                 dataBase?.budgetDao()?.deleteAll()
                 MainApplication.instance().spinnerMonth = (pos+1).toString()
+                horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth)
                 horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth)
                 initTotalChartView()
                 initChartView()
@@ -128,6 +130,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
     private fun refreshData(){
         val swipeRefreshLayout: SwipeRefreshLayout = binding.refresh
         swipeRefreshLayout.setOnRefreshListener {
+            horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth)
             horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth)
             initTotalChartView()
             initChartView()
@@ -246,7 +249,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
 
     }
     private fun setTotalChartViewData() {
-        horizontalViewModel.totalBarData.observe(viewLifecycleOwner){
+        horizontalViewModel.totalbarData.observe(viewLifecycleOwner){
             it.setValueTextSize(15f)
             totalCharView.data = it
         }
