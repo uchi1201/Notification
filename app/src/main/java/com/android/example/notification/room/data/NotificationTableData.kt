@@ -14,6 +14,7 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "notification_table")
 data class NotificationTableData(
+    //主キーを変更する
     @PrimaryKey
     var shopName:String,
     @ColumnInfo(name = "dateTime")

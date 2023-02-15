@@ -3,6 +3,8 @@ package com.android.example.notification
 
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -90,7 +92,15 @@ class MainActivity : AppCompatActivity() {
             calendar.timeInMillis,
             alarmIntent
         )
-
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val channel = NotificationChannel( // 一意のチャンネルID
+            "channel_id_sample",  // 設定に表示されるチャンネル名
+            "プッシュ通知",  // チャンネルの重要度
+            // 重要度によって表示箇所が異なる
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        // チャンネルの登録
+        manager.createNotificationChannel(channel)
 
 
     }

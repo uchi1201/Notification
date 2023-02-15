@@ -45,7 +45,7 @@ class CategoryManagementFragment : Fragment() {
     }
 
     private fun initData(){
-        categoryManagementViewModel = dataBase?.let { CategoryManagementViewModel(it) }
+       categoryManagementViewModel = dataBase?.let { CategoryManagementViewModel(it) }
 
         //DBから全部データを取得
         categoryManagementViewModel?.getAllCategoryData()

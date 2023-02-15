@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.room.Room
 import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.NotificationDataBase
+import com.android.example.notification.ui.category.CategoryManagementFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 
@@ -43,6 +44,7 @@ class MainApplication: Application()  {
             Log.d(TAG,token)
             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
+
     }
 
     //存储key对应的数据

@@ -173,10 +173,11 @@ class NotificationSendTestFragment : Fragment() {
                 .setCustomBigContentView(views)//レイアウトのビュー
                 .setAutoCancel(true)
                 .setContentIntent(penIntent)
+                .setChannelId("channel_id_sample")
         }
 
         val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        // Since android Oreo notification channel is needed.
+//         Since android Oreo notification channel is needed.
         notificationManager.notify(MyConstant.CHANNEL_ID, 1, notificationBuilder?.build())
     }
 
