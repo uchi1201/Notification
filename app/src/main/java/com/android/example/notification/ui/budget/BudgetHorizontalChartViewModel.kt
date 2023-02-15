@@ -17,11 +17,12 @@ import com.github.mikephil.charting.utils.ColorTemplate
 class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
 
     //予算総額設定
-    private val _totalBarData= MutableLiveData<BarData>().apply {
-        value = createTotalBarData()
-    }
-    val totalBarData: LiveData<BarData> = _totalBarData
+//    private val _totalBarData= MutableLiveData<BarData>().apply {
+//        value = createTotalBarData()
+//    }
+//    val totalBarData: LiveData<BarData> = _totalBarData
     //予算設定
+    val totalbarData= MutableLiveData<BarData>()
     val barData= MutableLiveData<BarData>()
     //XのLabel
 //    private val _xLabel = MutableLiveData<MutableList<String>>().apply {
@@ -35,7 +36,7 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
 
    //仮データ
     fun createBudgetDataList(month:String):MutableList<BudgetValueBean>{
-        val results = mutableListOf<BudgetValueBean>()
+       val results = mutableListOf<BudgetValueBean>()
        if(month == "1"){
            val data  =BudgetGraphData ("服飾費",4000f,6000f)
            results.add( BudgetValueBean(data))
@@ -178,14 +179,27 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
             budgetData.budgetTotal =  item.data.budgetTotal.toInt()
             budgetDao.insert(budgetData)
         }
-
     }
 
+    fun getTotalBarData(month:String){
+        totalbarData.value = createTotalBarData(month)
+    }
 
-    private fun createTotalBarData(): BarData {
+    private fun createTotalBarData(month: String): BarData {
         //表示用サンプルデータの予算総額作成
-        val total = 20000f
-        val actual = 9700f
+        var budgetList = budgetDao.getAll()
+        var total = 0f
+        var actual = 0f
+
+        if(budgetList.isEmpty()){
+            insertData(month)
+            budgetList = budgetDao.getAll()
+        }
+
+        for(i in budgetList.indices){
+            total += budgetList[i].budgetTotal
+            actual += budgetList[i].budget
+        }
 
         //①Entryにデータ格納
         var entryList = mutableListOf<BarEntry>()
@@ -212,7 +226,7 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
         barData.value = createBarData(month)
     }
 
-   private  fun createBarData(month:String): BarData {
+   private fun createBarData(month:String): BarData {
        var budgetList = budgetDao.getAll()
        var categoryList = categoryDao.getAll()
 
