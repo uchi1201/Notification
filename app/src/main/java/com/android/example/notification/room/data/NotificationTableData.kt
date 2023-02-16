@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 /**
  * 通知テーブルのフィールド定義
- * @property shopName String
+ * @property id Int
+ * @property shopName String?
  * @property dateTime String?
  * @property category String?
  * @property money String?
@@ -15,7 +16,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "notification_table")
 data class NotificationTableData(
     //主キーを変更する
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo
     var shopName:String,
     @ColumnInfo(name = "dateTime")
     var dateTime:String?,
