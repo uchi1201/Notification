@@ -1,5 +1,6 @@
 package com.android.example.notification.ui.budget
 
+import android.content.Context
 import android.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import com.android.example.notification.MainApplication
 import com.android.example.notification.data.BudgetGraphData
 import com.android.example.notification.data.BudgetValueBean
+import com.android.example.notification.data.CategoryListData
+import com.android.example.notification.json.ReadJsonFile
 import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.data.BudgetTableData
 import com.github.mikephil.charting.data.*
@@ -222,11 +225,12 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
         return BarData(dataSets)
     }
 
-    fun getBarData(month:String){
-        barData.value = createBarData(month)
+    //2/16
+    fun getBarData(month:String,context:Context){
+        barData.value = createBarData(month,context)
     }
 
-   private fun createBarData(month:String): BarData {
+   private fun createBarData(month:String,context: Context): BarData {
        var budgetList = budgetDao.getAll()
        var categoryList = categoryDao.getAll()
 
@@ -234,7 +238,14 @@ class BudgetHorizontalChartViewModel(dataBase: AppDataBase) : ViewModel() {
            insertData(month)
            budgetList = budgetDao.getAll()
        }
-
+    //2/16
+       if(categoryList.isEmpty()){
+           val result = ReadJsonFile("getCategoryListData.json").getCategoryListData(context.applicationContext, CategoryListData::class.java)
+           for(item in result?.data?.dataList!!){
+               categoryDao.insert(item)
+           }
+           categoryList = categoryDao.getAll()
+       }
        var entryList = mutableListOf<BarEntry>()
        var colorList = mutableListOf<Int>()
 

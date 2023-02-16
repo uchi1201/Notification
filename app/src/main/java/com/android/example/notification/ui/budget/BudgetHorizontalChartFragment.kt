@@ -73,7 +73,7 @@ class BudgetHorizontalChartFragment :  Fragment()  {
 
     private fun initData() {
         horizontalViewModel = dataBase?.let { BudgetHorizontalChartViewModel(it) }!!
-        activity?.let { horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth) }
+        activity?.let { horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth,it.applicationContext) }
         activity?.let { horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth) }
     }
 
@@ -103,7 +103,8 @@ class BudgetHorizontalChartFragment :  Fragment()  {
                 dataBase?.budgetDao()?.deleteAll()
                 MainApplication.instance().spinnerMonth = (pos+1).toString()
                 horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth)
-                horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth)
+//                horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth,it.applicationContext)
+                activity?.let { horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth, it.applicationContext) }
                 initTotalChartView()
                 initChartView()
                 setChartViewData()
@@ -131,7 +132,8 @@ class BudgetHorizontalChartFragment :  Fragment()  {
         val swipeRefreshLayout: SwipeRefreshLayout = binding.refresh
         swipeRefreshLayout.setOnRefreshListener {
             horizontalViewModel.getTotalBarData(MainApplication.instance().spinnerMonth)
-            horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth)
+            activity?.let { horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth, it.applicationContext) }
+//            horizontalViewModel.getBarData(MainApplication.instance().spinnerMonth)
             initTotalChartView()
             initChartView()
             setChartViewData()
