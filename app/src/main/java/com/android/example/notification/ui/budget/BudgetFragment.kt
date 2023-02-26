@@ -76,7 +76,7 @@ class BudgetFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, pos: Int, id: Long) {
                 MainApplication.instance().spinnerMonth = (pos+1).toString()
                 budgetViewModel.getPieData(MainApplication.instance().spinnerMonth)
-                budgetViewModel.getListData((MainApplication.instance().spinnerMonth.toInt()-1).toString())
+                budgetViewModel.getListData(MainApplication.instance().spinnerMonth)//.toInt()-1).toString())
                 initView()
                 month = MainApplication.instance().spinnerMonth
             }
