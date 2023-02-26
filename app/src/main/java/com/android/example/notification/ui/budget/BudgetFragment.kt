@@ -34,6 +34,7 @@ class BudgetFragment : Fragment() {
     private lateinit var budgetViewModel: BudgetViewModel
     private lateinit var month: String
     private val dataBase =  MainApplication.instance().appDataBase
+    private lateinit var paytotal: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,6 +104,7 @@ class BudgetFragment : Fragment() {
                 categoryView.text = d.category
                 budgetView.text = d.budget
                 percentageView.text = d.percentage
+
             }
             var adapter = BudgetListViewAdapter(
                 R.layout.budget_list_item,
@@ -110,6 +112,10 @@ class BudgetFragment : Fragment() {
             recycleView.layoutManager= LinearLayoutManager(activity)
             recycleView.adapter=adapter
         }
+
+        val totalPay: TextView = binding.totalTx
+        paytotal = budgetViewModel.total.toString()
+        totalPay.setText(paytotal)
 
         val pieChart: PieChart = binding.pieChart
         budgetViewModel.pieData.observe(viewLifecycleOwner) {

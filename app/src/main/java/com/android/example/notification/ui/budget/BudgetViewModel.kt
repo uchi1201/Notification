@@ -14,12 +14,17 @@ class BudgetViewModel(dataBase: AppDataBase) : ViewModel() {
 
     val budgetData = MutableLiveData<MutableList<BudgetData>>()
     val pieData = MutableLiveData<PieData>()
+    var total: Int? = 0
     val categoryDao = dataBase.categoryDao()
 
     fun getListData(month: String){
+        total = 0
         var budgetDataBean =  getBudgetBean(month)
         for (i in budgetDataBean.indices){
             budgetData.value = budgetDataBean[i].data
+            for( j in budgetDataBean[i].data.indices){
+                total = total?.plus(budgetDataBean[i].data[j].budget.toInt())
+            }
         }
     }
 
