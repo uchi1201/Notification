@@ -25,7 +25,7 @@ class NotificationSendTestFragment : Fragment() {
     private var _binding: FragmentNotificationSendTestBinding? = null
     private val binding get() = _binding!!
     private var money:String?=null
-    private var shopName:String = ""
+    private var shopName:String? = null
     private var category:String?=null
     private var date:String?=null
 

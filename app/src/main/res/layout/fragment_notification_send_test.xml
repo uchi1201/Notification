@@ -49,7 +49,7 @@
             android:layout_marginRight="110dp"
             android:layout_gravity="center"
             android:textSize="20sp"
-            android:text="日期"
+            android:text="日付"
             />
         <EditText
             android:id="@+id/date"
