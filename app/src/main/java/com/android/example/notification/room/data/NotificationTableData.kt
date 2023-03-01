@@ -15,9 +15,9 @@ import androidx.room.PrimaryKey
  */
 @Entity(tableName = "notification_table")
 data class NotificationTableData(
-    //主キーを変更する
+    //主キーを変更済
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    @ColumnInfo
+    @ColumnInfo (name= "shopName")
     var shopName:String,
     @ColumnInfo(name = "dateTime")
     var dateTime:String?,

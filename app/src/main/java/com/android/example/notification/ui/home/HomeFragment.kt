@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
         //fireBaseのPush通知のメッセージデータを取得
         val money = arguments?.getString("money")
         val date1 = arguments?.getString("date")
-        val address = arguments?.getString("address")
+        val address = arguments?.getString("shopName")
         val category = arguments?.getString("category")
         if(arguments != null) {
             var notificationTableData = NotificationTableData(
