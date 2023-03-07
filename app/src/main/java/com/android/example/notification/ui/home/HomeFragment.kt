@@ -2,6 +2,7 @@ package com.android.example.notification.ui.home
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,10 +17,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.example.notification.MainApplication
 import com.android.example.notification.R
 import com.android.example.notification.databinding.FragmentHomeBinding
+import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.NotificationDataBase
 import com.android.example.notification.room.dao.NotificationDao
 import com.android.example.notification.room.data.NotificationTableData
 import com.android.example.notification.ui.base.list.BaseRecycleViewAdapter
+import com.android.example.notification.ui.category.CategoryManagementViewModel
 import com.android.example.notification.ui.notification.NotificationListViewAdapter
 import com.android.example.notification.ui.notification.NotificationManageViewModel
 import com.android.example.notification.utils.LoadingDialogUtils
@@ -42,6 +45,10 @@ class HomeFragment : Fragment() {
     private var currentMoney: Int? = 0
     //残り額
     private var totalBudget = "0"
+
+    //3/7
+    private var categoryManagementViewModel: CategoryManagementViewModel?= null
+    private var dataBase2: AppDataBase? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -183,13 +190,43 @@ class HomeFragment : Fragment() {
             // 青＝水道
             //赤＝食費
             //灰＝その他
-            when(d.category){
-                "水道" -> cardView.strokeColor = context?.getColor(R.color.blue)!!
-                "食費" -> cardView.strokeColor = context?.getColor(R.color.red)!!
-                "その他" -> cardView.strokeColor = context?.getColor(R.color.gray)!!
-                else -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+
+            //DBを取得
+            dataBase2 = MainApplication.instance().appDataBase
+
+            categoryManagementViewModel = dataBase2?.let { CategoryManagementViewModel(it) }
+
+            //DBから全部データを取得
+            categoryManagementViewModel?.getAllCategoryData()
+
+            if(categoryManagementViewModel?.categoryDbData?.size == 0){
+                //DBのデータがない時データ追加
+                activity?.let { categoryManagementViewModel?.insertDataBaseData(it.applicationContext) }
+
+                //DBから全部データを取得
+                categoryManagementViewModel?.getAllCategoryData()
+            }
+            var cate = categoryManagementViewModel?.categoryDbData
+            cardView.strokeColor = context?.getColor(R.color.gray)!!
+            if (cate != null) {
+                for(a in cate)
+                {
+                    if(d.category == a.category)
+                    {
+                        cardView.strokeColor = Color.parseColor(a.color)
+                        break
+                    }
+
+                }
             }
 
+
+//            when(d.category){
+//                "水道" -> cardView.strokeColor = context?.getColor(R.color.blue)!!
+//                "食費" -> cardView.strokeColor = context?.getColor(R.color.red)!!
+//                "その他" -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+//                else -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+//            }
         }
         //リストのアダプター設定
         var adapter =

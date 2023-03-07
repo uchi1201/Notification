@@ -7,6 +7,7 @@ import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -29,10 +30,12 @@ import com.android.example.notification.constant.MyConstant.Companion.CHANNEL_ID
 import com.android.example.notification.constant.MyConstant.Companion.CHANNEL_OTHER_ID
 import com.android.example.notification.constant.MyConstant.Companion.CHANNEL_X_ID
 import com.android.example.notification.databinding.FragmentNotificationManageBinding
+import com.android.example.notification.room.AppDataBase
 import com.android.example.notification.room.NotificationDataBase
 import com.android.example.notification.room.dao.NotificationDao
 import com.android.example.notification.room.data.NotificationTableData
 import com.android.example.notification.ui.base.list.BaseRecycleViewAdapter
+import com.android.example.notification.ui.category.CategoryManagementViewModel
 
 import com.android.example.notification.utils.CustomDialog
 import com.android.example.notification.utils.FilterDialog
@@ -55,6 +58,9 @@ class NotificationManageFragment : Fragment() {
     var isNotificationChannelEnable: Boolean = false
     private var dataBase: NotificationDataBase? = null
     var notificationDao: NotificationDao? = null
+
+    private var categoryManagementViewModel: CategoryManagementViewModel?= null
+    private var dataBase2: AppDataBase? = null
 
     /**
      * 初期化時全部ＯＮになるため、通知許可リクエスト許可のダイアログ表示と選択
@@ -312,12 +318,42 @@ class NotificationManageFragment : Fragment() {
             //青＝水道
             //赤＝食費
             //灰＝その他
-            when(d.category){
-                "水道" -> cardView.strokeColor = context?.getColor(R.color.blue)!!
-                "食費" -> cardView.strokeColor = context?.getColor(R.color.red)!!
-                "その他" -> cardView.strokeColor = context?.getColor(R.color.gray)!!
-                else -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+            //DBを取得
+            dataBase2 = MainApplication.instance().appDataBase
+
+            categoryManagementViewModel = dataBase2?.let { CategoryManagementViewModel(it) }
+
+            //DBから全部データを取得
+            categoryManagementViewModel?.getAllCategoryData()
+
+            if(categoryManagementViewModel?.categoryDbData?.size == 0){
+                //DBのデータがない時データ追加
+                activity?.let { categoryManagementViewModel?.insertDataBaseData(it.applicationContext) }
+
+                //DBから全部データを取得
+                categoryManagementViewModel?.getAllCategoryData()
             }
+            var cate = categoryManagementViewModel?.categoryDbData
+            cardView.strokeColor = context?.getColor(R.color.gray)!!
+            if (cate != null) {
+                for(a in cate)
+                {
+                    if(d.category == a.category)
+                    {
+                        cardView.strokeColor = Color.parseColor(a.color)
+                        break
+                    }
+
+                }
+            }
+
+
+//            when(d.category){
+//                "水道" -> cardView.strokeColor = context?.getColor(R.color.blue)!!
+//                "食費" -> cardView.strokeColor = context?.getColor(R.color.red)!!
+//                "その他" -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+//                else -> cardView.strokeColor = context?.getColor(R.color.gray)!!
+//            }
 
         }
         //リストのアダプター設定
