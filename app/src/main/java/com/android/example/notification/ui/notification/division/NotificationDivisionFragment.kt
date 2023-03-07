@@ -41,7 +41,16 @@ class NotificationDivisionFragment : Fragment() {
         dataBase = MainApplication.instance().notificationDataBase
         initData()
         initView()
+
+        binding.addBtn.setOnClickListener {
+            categoryAdd("もりもり商店","2023/3/22")
+        }
+
+
+
+
         return binding.root
+
     }
 
     /**
