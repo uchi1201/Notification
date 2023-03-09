@@ -42,11 +42,12 @@ class NotificationDivisionFragment : Fragment() {
         initData()
         initView()
 
-        binding.addBtn.setOnClickListener {
-            categoryAdd("もりもり商店","2023/3/22")
-        }
-
-
+//
+//        binding.addBtn.setOnClickListener {
+//
+//
+//            categoryAdd("もりもり商店")
+//        }
 
 
         return binding.root
@@ -117,7 +118,7 @@ class NotificationDivisionFragment : Fragment() {
         //データを登録
         if (shopName != null) {
             if (date1 != null) {
-                categoryAdd(shopName,date1)
+                categoryAdd(shopName)
             }
         }
 
@@ -126,24 +127,32 @@ class NotificationDivisionFragment : Fragment() {
     /**
      * 選択したカテゴリーを登録
      */
-    private fun categoryAdd(shopName: String,date:String){
+    private fun categoryAdd(shopName: String){//,date:String){
         //登録ボタンを押下イベント処理
         binding.addBtn.setOnClickListener {
-            val moneyEdit = binding.moneyEdit.text.toString()
             //画面のデータを取得設定
-            var notificationTableData = NotificationTableData(
-                shopName = shopName!!,
-                dateTime = date,
-                category = mCategory,
-                money = moneyEdit
-            )
-            //DBのデータを更新
-            dataBase?.notificationDao()?.update(notificationTableData)
+            var notificationTableData = dataBase?.notificationDao()?.findByNumber(shopName)
+            if (notificationTableData != null) {
+                notificationTableData.category = mCategory
+
+                //DBのデータを更新
+                dataBase?.notificationDao()?.update(notificationTableData)
+            }
+
+//            val moneyEdit = binding.moneyEdit.text.toString()
+//            var notificationTableData = NotificationTableData(
+//                shopName = shopName!!,
+//                dateTime = date,
+//                category = mCategory,
+//                money = moneyEdit
+//            )
+//            //DBのデータを更新
+//            dataBase?.notificationDao()?.update(notificationTableData)
+
             //遷移元画面へ遷移
             view?.let { it1 -> Navigation.findNavController(it1).navigateUp() }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
