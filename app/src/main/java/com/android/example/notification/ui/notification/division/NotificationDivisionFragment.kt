@@ -42,12 +42,6 @@ class NotificationDivisionFragment : Fragment() {
         initData()
         initView()
 
-//
-//        binding.addBtn.setOnClickListener {
-//
-//
-//            categoryAdd("もりもり商店")
-//        }
 
 
         return binding.root

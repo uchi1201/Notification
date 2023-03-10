@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
 //        ローカルプッシュ通知機能
         val alarmMgr: AlarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val alarmIntent: PendingIntent = Intent(application, AlarmReceiver::class.java).let { intent ->
-            var yosangaku =  12200
-            var riyougaku = 27000
+            var yosangaku =  27000
+            var riyougaku = 1000
 
 //                デバッグは条件変更のたびにアンスト＋通知ONすること
             var msg1 = if (yosangaku < riyougaku){
@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             var msg2 = if (yosangaku < riyougaku){
-                "超過"
+                "お得にポイント活用して節約しよう！！"
             } else {
-                "まだまだ余裕があるよ。気になってたお洋服が買えちゃうかも！"
+                "まだまだ余裕があるよ。気になってたものが買えちゃうかも！"
             }
 
             intent.putExtra("TITLE",msg1)
@@ -74,9 +74,9 @@ class MainActivity : AppCompatActivity() {
 
         // 今月の25日15:00に設定
         val calendar: Calendar = Calendar.getInstance()
-        calendar.set(Calendar.DATE, 7)
-        calendar.set(Calendar.HOUR_OF_DAY, 10)
-        calendar.set(Calendar.MINUTE, 55)
+        calendar.set(Calendar.DATE, 10)
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        calendar.set(Calendar.MINUTE,38)
         calendar.set(Calendar.SECOND, 0)
 
         // 現在日時が今月の25日15:00を過ぎていた場合は、翌月の25日15:00を設定する

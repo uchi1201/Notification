@@ -18,7 +18,7 @@ class MainApplication: Application()  {
     var appDataBase:AppDataBase? = null
     //var budgetDataBase: BudgetDataBase? = null
     var isEditBudget: Boolean = false
-    var totalBudgetValue = 34000
+    var totalBudgetValue = 27000
     var mainKeyValue = 0
 
     override fun onCreate() {
